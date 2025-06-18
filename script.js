@@ -1,23 +1,14 @@
 const modulos = [
-  { nome: "OSDA 585W", corrente: 13.76, tensao: 42.52 },
-  { nome: "OSDA 610W", corrente: 15.08, tensao: 40.46 },
-  { nome: "DAH 620W", corrente: 15.01, tensao: 39.02 },
-  { nome: "ZNSHINE 620W", corrente: 15.13, tensao: 41.0 },
-  { nome: "RENE SOLAR 600W", corrente: 13.43, tensao: 44.68 },
-  { nome: "ERA SOLAR 700W", corrente: 16.76, tensao: 41.78 },
-  { nome: "RONMA SOLAR 570W", corrente: 13.48, tensao: 42.29 },
-  { nome: "SUNOVA SOLAR 610W", corrente: 13.69, tensao: 44.7 }
+  { nome: "OSDA 585W", potencia: 585, corrente: 13.76, curto: 14.55, tensao: 42.52 },
+  { nome: "OSDA 610W", potencia: 610, corrente: 15.08, curto: 15.96, tensao: 40.46 },
+  { nome: "DAH 620W", potencia: 620, corrente: 15.01, curto: 16.0, tensao: 39.02 },
+  { nome: "ZNSHINE 620W", potencia: 620, corrente: 15.13, curto: 16.05, tensao: 41.0 },
+  { nome: "RENE SOLAR 600W", potencia: 600, corrente: 13.43, curto: 14.02, tensao: 44.68 },
+  { nome: "ERA SOLAR 700W", potencia: 700, corrente: 16.76, curto: 17.81, tensao: 41.78 },
+  { nome: "RONMA SOLAR 570W", potencia: 570, corrente: 13.48, curto: 14.25, tensao: 42.29 },
+  { nome: "SUNOVA SOLAR 610W", potencia: 610, corrente: 13.69, curto: 14.59, tensao: 44.7 }
 ];
 
-
-const inversores = [
-  { nome: "Kehua Monofásico", corrente: 16.0 },
-  { nome: "Kehua Trifásico", corrente: 15.0 },
-  { nome: "Solis Monofásico", corrente: 16.0 },
-  { nome: "Solis Trifásico", corrente: 16.0 },
-  { nome: "Solplanet Monofásico", corrente: 16.0 },
-  { nome: "Solplanet Trifásico", corrente: 16.0 }
-];
 
 const moduloSelect = document.getElementById("modulo");
 const inversorSelect = document.getElementById("inversor");
