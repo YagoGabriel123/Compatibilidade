@@ -36,38 +36,52 @@ function verificarCompatibilidade() {
   const ehSolplanetOuSolis = inversor.nome.includes("Solplanet") || inversor.nome.includes("Solis");
   const ehZNSHINEespecial = modulo.nome.includes("ZNSHINE 620W") && inversor.nome === "Kehua Trifásico";
 
+  let mensagemDados = `
+    <strong>🔌 Módulo Selecionado:</strong><br>
+    Modelo: ${modulo.nome}<br>
+    Potência: ${modulo.potencia}W<br>
+    Corrente de operação: ${modulo.corrente}A<br>
+    Corrente de curto-circuito: ${modulo.curto}A<br>
+    Tensão de operação: ${modulo.tensao}V<br><br>
+
+    <strong>⚡ Inversor Selecionado:</strong><br>
+    Marca/Modelo: ${inversor.nome}<br>
+    Corrente de operação: ${inversor.corrente}A<br>
+    Corrente de curto-circuito: ${inversor.curto}A<br><br>
+  `;
+
   if (ehZNSHINEespecial) {
     resultadoDiv.className = "resultado azul-claro";
     resultadoDiv.innerHTML = `
-      🔷 Compatível: Autorização especial<br>
-      Módulo: ${modulo.nome} (${modulo.corrente}A, ${modulo.tensao}V)<br>
-      Inversor: ${inversor.nome} (${inversor.corrente}A)<br><br>
-      <strong>Venda autorizada por ADEMIR via email.</strong>
+      ${mensagemDados}
+      🔷 <strong>Compatível com autorização especial</strong><br>
+      Venda autorizada por ADEMIR via email.
     `;
   } else if (modulo.corrente <= inversor.corrente) {
     resultadoDiv.className = "resultado verde";
     resultadoDiv.innerHTML = `
-      ✅ Compatível!<br>
-      A corrente de operação do módulo (${modulo.corrente}A) está dentro do limite do inversor (${inversor.corrente}A).
+      ${mensagemDados}
+      ✅ <strong>Compatível:</strong> A corrente do módulo está dentro do limite do inversor.
     `;
   } else if (ehSolplanetOuSolis) {
     resultadoDiv.className = "resultado amarelo";
     resultadoDiv.innerHTML = `
-      ⚠️ Compatível com ressalva<br>
-      A corrente do módulo (${modulo.corrente}A) excede a do inversor (${inversor.corrente}A).<br><br>
-      <strong>Explicação:</strong><br>
-      Segundo a Lei da Ohm: Potência(W) é igual a tensão(V) multiplicado pela corrente(I) -> com ${modulo.tensao}V × ${inversor.corrente}A → potência limitada a <strong>${potencia_resultante}W</strong>.<br>
-      Parte da corrente excedente será dissipada como calor, reduzindo a eficiência do módulo.
+      ${mensagemDados}
+      ⚠️ <strong>Compatível com ressalva:</strong> A corrente do módulo (${modulo.corrente}A) excede a do inversor (${inversor.corrente}A).<br><br>
+      Pela Lei da Potência (P = V × I):<br>
+      Potência limitada a <strong>${potencia_resultante}W</strong>.<br>
+      A corrente excedente será dissipada como calor, reduzindo a eficiência do sistema.
     `;
   } else {
     resultadoDiv.className = "resultado vermelho";
     resultadoDiv.innerHTML = `
-      ❌ Incompatível!<br>
-      A corrente de operação do módulo (${modulo.corrente}A) é maior que a suportada pelo inversor (${inversor.corrente}A).<br><br>
-      <strong>Explicação:</strong><br>
-      Segundo a Lei da Ohm: Potência(W) é igual a tensão(V) multiplicado pela corrente(I) -> com ${modulo.tensao}V × ${inversor.corrente}A → potência limitada a <strong>${potencia_resultante}W</strong>.<br>
-      A corrente excedente será dissipada em forma de calor, e o módulo não entregará sua potência nominal.
+      ${mensagemDados}
+      ❌ <strong>Incompatível:</strong> A corrente do módulo (${modulo.corrente}A) excede a suportada pelo inversor (${inversor.corrente}A).<br><br>
+      Pela Lei da Potência (P = V × I):<br>
+      Potência limitada a <strong>${potencia_resultante}W</strong>.<br>
+      Parte da corrente será dissipada como calor, diminuindo a entrega de potência.
     `;
   }
 }
+
 
