@@ -48,7 +48,7 @@ function verificarCompatibilidade() {
   if (ehZNSHINEespecial) {
     resultadoDiv.className = "resultado azul-claro";
     resultadoDiv.innerHTML = `
-      🔷 Compatível com autorização especial<br>
+      🔷 Compatível: Autorização especial<br>
       Módulo: ${modulo.nome} (${modulo.corrente}A, ${modulo.tensao}V)<br>
       Inversor: ${inversor.nome} (${inversor.corrente}A)<br><br>
       <strong>Venda autorizada por ADEMIR via email.</strong>
