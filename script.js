@@ -9,6 +9,14 @@ const modulos = [
   { nome: "SUNOVA SOLAR 610W", potencia: 610, corrente: 13.69, curto: 14.59, tensao: 44.7 }
 ];
 
+const inversores = [
+  { nome: "Kehua Monofásico", marca: "Kehua", modelo: "Monofásico", corrente: 16.0, curto: 20.0 },
+  { nome: "Kehua Trifásico", marca: "Kehua", modelo: "Trifásico", corrente: 15.0, curto: 18.75 },
+  { nome: "Solis Monofásico", marca: "Solis", modelo: "Monofásico", corrente: 16.0, curto: 25.0 },
+  { nome: "Solis Trifásico", marca: "Solis", modelo: "Trifásico", corrente: 16.0, curto: 22.0 },
+  { nome: "Solplanet Monofásico", marca: "Solplanet", modelo: "Monofásico", corrente: 16.0, curto: 24.0 },
+  { nome: "Solplanet Trifásico", marca: "Solplanet", modelo: "Trifásico", corrente: 16.0, curto: 24.0 }
+];
 
 const moduloSelect = document.getElementById("modulo");
 const inversorSelect = document.getElementById("inversor");
@@ -33,7 +41,7 @@ function verificarCompatibilidade() {
 
   const resultadoDiv = document.getElementById("resultado");
   const potencia_resultante = (modulo.tensao * inversor.corrente).toFixed(2);
-  const ehSolplanetOuSolis = inversor.nome.includes("Solplanet") || inversor.nome.includes("Solis");
+  const ehSolplanetOuSolis = inversor.marca === "Solplanet" || inversor.marca === "Solis";
   const ehZNSHINEespecial = modulo.nome.includes("ZNSHINE 620W") && inversor.nome === "Kehua Trifásico";
 
   let mensagemDados = `
