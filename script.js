@@ -65,7 +65,7 @@ function verificarCompatibilidade() {
       ⚠️ Compatível com ressalva<br>
       A corrente do módulo (${modulo.corrente}A) excede a do inversor (${inversor.corrente}A).<br><br>
       <strong>Explicação:</strong><br>
-      Segundo a Lei da Potência (P = V × I), com ${modulo.tensao}V × ${inversor.corrente}A → potência limitada a <strong>${potencia_resultante}W</strong>.<br>
+      Segundo a Lei da Ohm: Potência(W) é igual a tensão(V) multiplicado pela corrente(I) -> com ${modulo.tensao}V × ${inversor.corrente}A → potência limitada a <strong>${potencia_resultante}W</strong>.<br>
       Parte da corrente excedente será dissipada como calor, reduzindo a eficiência do módulo.
     `;
   } else {
@@ -74,7 +74,7 @@ function verificarCompatibilidade() {
       ❌ Incompatível!<br>
       A corrente de operação do módulo (${modulo.corrente}A) é maior que a suportada pelo inversor (${inversor.corrente}A).<br><br>
       <strong>Explicação:</strong><br>
-      Segundo a Lei da Potência (P = V × I), com ${modulo.tensao}V × ${inversor.corrente}A → potência limitada a <strong>${potencia_resultante}W</strong>.<br>
+      Segundo a Lei da Ohm: Potência(W) é igual a tensão(V) multiplicado pela corrente(I) -> com ${modulo.tensao}V × ${inversor.corrente}A → potência limitada a <strong>${potencia_resultante}W</strong>.<br>
       A corrente excedente será dissipada em forma de calor, e o módulo não entregará sua potência nominal.
     `;
   }
