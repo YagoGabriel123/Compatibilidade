@@ -43,8 +43,17 @@ function verificarCompatibilidade() {
   const resultadoDiv = document.getElementById("resultado");
   const potencia_resultante = (modulo.tensao * inversor.corrente).toFixed(2);
   const ehSolplanetOuSolis = inversor.nome.includes("Solplanet") || inversor.nome.includes("Solis");
+  const ehZNSHINEespecial = modulo.nome.includes("ZNSHINE 620W") && inversor.nome === "Kehua Trifásico";
 
-  if (modulo.corrente <= inversor.corrente) {
+  if (ehZNSHINEespecial) {
+    resultadoDiv.className = "resultado azul-claro";
+    resultadoDiv.innerHTML = `
+      🔷 Compatível:  Autorização especial!<br>
+      Módulo: ${modulo.nome} (${modulo.corrente}A, ${modulo.tensao}V)<br>
+      Inversor: ${inversor.nome} (${inversor.corrente}A)<br><br>
+      <strong>Venda autorizada por ADEMIR via email.</strong>
+    `;
+  } else if (modulo.corrente <= inversor.corrente) {
     resultadoDiv.className = "resultado verde";
     resultadoDiv.innerHTML = `
       ✅ Compatível!<br>
@@ -56,7 +65,7 @@ function verificarCompatibilidade() {
       ⚠️ Compatível com ressalva<br>
       A corrente do módulo (${modulo.corrente}A) excede a do inversor (${inversor.corrente}A).<br><br>
       <strong>Explicação:</strong><br>
-      Segundo a Lei de Ohm : Potência(W) é igual a tensão(V) multiplicado pela corrente(I) ->(P = V × I), com ${modulo.tensao}V × ${inversor.corrente}A → potência limitada a <strong>${potencia_resultante}W</strong>.<br>
+      Segundo a Lei da Potência (P = V × I), com ${modulo.tensao}V × ${inversor.corrente}A → potência limitada a <strong>${potencia_resultante}W</strong>.<br>
       Parte da corrente excedente será dissipada como calor, reduzindo a eficiência do módulo.
     `;
   } else {
@@ -65,7 +74,7 @@ function verificarCompatibilidade() {
       ❌ Incompatível!<br>
       A corrente de operação do módulo (${modulo.corrente}A) é maior que a suportada pelo inversor (${inversor.corrente}A).<br><br>
       <strong>Explicação:</strong><br>
-      Segundo a Lei de Ohm : Potência(W) é igual a tensão(V) multiplicado pela corrente(I) -> (P = V × I), com ${modulo.tensao}V × ${inversor.corrente}A → potência limitada a <strong>${potencia_resultante}W</strong>.<br>
+      Segundo a Lei da Potência (P = V × I), com ${modulo.tensao}V × ${inversor.corrente}A → potência limitada a <strong>${potencia_resultante}W</strong>.<br>
       A corrente excedente será dissipada em forma de calor, e o módulo não entregará sua potência nominal.
     `;
   }
